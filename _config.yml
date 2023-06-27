@@ -13,10 +13,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 #
 
-source: src
-destination: _site
 TZ: Europe/Paris
-locale: fr_FR
 
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
@@ -31,16 +28,17 @@ description: >-
   Ce blog est alimenté avec ♡ par votre spécialiste Lillois des architectures cloud AWS.
 baseurl: ""
 url: "https://waultlabs.fr"
-logo: "/assets/images/logo.png"
+
 google_analytics: G-Z5VGG1T9FM
 twitter_username: waultlabs
 github_username: waultlabs
 
 # Build settings
+markdown: kramdown
+theme: null
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-
 include:
   - _pages/
