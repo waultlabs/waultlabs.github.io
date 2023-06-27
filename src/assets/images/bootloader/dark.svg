@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--
+  WaultLabs logo
+-->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="700px" height="600px" viewBox="0 0 700 600" enable-background="new 0 0 700 600" xml:space="preserve">
+  <defs>
+    <path id="u" d="
+      M 0 50
+      L 0 300
+      A 200 200 1 1 0 400 300
+      L 400 50
+      A 50 50 1 1 0 300 50
+      L 300 300
+      A 100 100 1 1 1 100 300
+      L 100 50
+      A 50 50 1 1 0 0 50
+      z
+    "/>
+    <mask id="outsideU">
+      <rect x="-50" y="-50" width="800" height="800" fill="white"/>
+      <use xlink:href="#u" fill="black"/>
+    </mask>
+    <path id="stillwater" d="
+      M 125 295
+      L 125 300
+      A 75 75 1 0 0 275 300
+      L 275 295
+      z
+    "/>
+    <path id="water" d="
+      M 125 100
+      L 125 300
+      L 275 300
+      L 275 100
+      C 200 150 200 50 125 100
+      z
+    "/>
+    <!-- logo -->
+    <mask id="w">
+      <g transform="translate(0, 100)">
+        <use
+          xlink:href="#u"
+          style="fill:white;stroke:black;stroke-width:50px"
+          mask="url(#outsideU)"
+        />
+        <use
+          xlink:href="#u"
+          style="fill:white"
+        />
+      </g>
+      <g transform="translate(300, 100)">
+        <use
+          xlink:href="#u"
+          style="fill:white;stroke:black;stroke-width:50px"
+          mask="url(#outsideU)"
+        />
+        <use
+          xlink:href="#u"
+          style="fill:white"
+        />
+      </g>
+    </mask>
+  </defs>
+
+  <!-- composite -->
+  <g>
+    <g transform="translate(300, 100)">
+      <use xlink:href="#stillwater"
+        style="fill:hsl(46,85%,47%)"
+      />
+    </g>
+    <g transform="translate(300, 100)">
+      <g id="liquid" transform-origin="center 300">
+        <use xlink:href="#water"
+          style="fill:hsl(46,85%,47%)"
+        />
+      </g>
+      <circle id="bubble2" cx="175" cy="0" r="20" style="fill:transparent;stroke:hsl(46,85%,47%);stroke-width:10px" stroke-opacity="0" />
+      <circle id="bubble1" cx="225" cy="50" r="20" style="fill:transparent;stroke:hsl(46,85%,47%);stroke-width:10px" stroke-opacity="0" />
+      <circle id="bubble3" cx="225" cy="-75" r="20" style="fill:transparent;stroke:hsl(46,85%,47%);stroke-width:10px" stroke-opacity="0" />
+    </g>
+    <rect x="0" y="0" width="700" height="600" style="fill:hsl(280,70%,15%)" mask="url(#w)" />
+
+    <!-- animation -->
+    <animateTransform 
+      id="fill"
+      xlink:href="#liquid" attributeName="transform"
+      type="scale"
+      from="1 0"
+      to="1 1"
+      begin="0s; empty.end + .7s"
+      dur="1s"
+      fill="freeze"
+    />
+    <animate id="fadeinbubble1" xlink:href="#bubble1" dur="0.1s" begin="fill.end" attributeName="stroke-opacity" from="0" to="1" fill="freeze" />
+    <animate id="fadeinbubble2" xlink:href="#bubble2" dur="0.1s" begin="fadeinbubble1.end" attributeName="stroke-opacity" from="0" to="1" fill="freeze" />
+    <animate id="fadeinbubble3" xlink:href="#bubble3" dur="0.1s" begin="fadeinbubble2.end" attributeName="stroke-opacity" from="0" to="1" fill="freeze" />
+    <animate id="fadeoutbubble1" xlink:href="#bubble1" dur="0.1s" begin="fadeinbubble3.end" attributeName="stroke-opacity" from="1" to="0" fill="freeze" />
+    <animate id="fadeoutbubble2" xlink:href="#bubble2" dur="0.1s" begin="fadeoutbubble1.end" attributeName="stroke-opacity" from="1" to="0" fill="freeze" />
+    <animate id="fadeoutbubble3" xlink:href="#bubble3" dur="0.1s" begin="fadeoutbubble2.end" attributeName="stroke-opacity" from="1" to="0" fill="freeze" />
+    <animateTransform 
+      id="empty"
+      xlink:href="#liquid" attributeName="transform"
+      begin="fadeoutbubble3.end + .5s"
+      type="scale"
+      from="1 1"
+      to="1 0"
+      dur=".4s"
+      fill="freeze"
+    />
+  
+  </g>
+  
+</svg>
